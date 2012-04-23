@@ -170,11 +170,11 @@ class client:
 		except urllib2.HTTPError as e:
 			# The unauthorized status code can sometimes have meaningful data
 			if e.code == 401:
-				raise lsapiException(e.read())
+				raise linkscapeException(e.read())
 			else:
-				raise lsapiException(e)
+				raise linkscapeException(e)
 		except Exception as e:
-			raise lsapiException(e)
+			raise linkscapeException(e)
 	
 	def urlMetrics(self, urls, cols=UMCols.freeCols):
 		if isinstance(urls, basestring):
