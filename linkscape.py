@@ -211,6 +211,12 @@ class client:
         except Exception as exc:
             raise linkscapeException(exc)
 
+    def topPages(self, domain, offset=0, limit=50, sort='page_authority',
+                 filter='all', cols=UMCols.freeCols):
+        '''Get chosen url metrics about the top pages of a domain'''
+        return self.query('top-pages/%s' % urllib.quote(domain), Offset=offset,
+                          Limit=limit, Sort=sort, Filter=filter, Cols=cols)
+
     def urlMetrics(self, urls, cols=UMCols.freeCols):
         '''Get metrics about a url'''
         if isinstance(urls, basestring):
