@@ -228,11 +228,13 @@ class client:
         else:
             return self.query('url-metrics', data=json.dumps(urls), Cols=cols)
 
-    def anchorText(self, url, scope='phrase_to_page',
-        sort='domains_linking_page', cols=ATCols.freeCols):
+    def anchorText(self, url, scope='phrase_to_page', offset=0, limit=25,
+                   filter='external', sort='domains_linking_page',
+                   cols=ATCols.freeCols):
         '''Get metrics about anchor text'''
         return self.query('anchor-text/%s' % urllib.quote(url),
-            Scope=scope, Sort=sort, Cols=cols)
+                          Scope=scope, Offset=offset, Limit=limit,
+                          Filter=filter, Sort=sort, Cols=cols)
 
     def links(self, url, scope='page_to_page', sort='page_authority',
         filters=['internal'],
