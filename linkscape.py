@@ -211,6 +211,16 @@ class client:
         except Exception as exc:
             raise linkscapeException(exc)
 
+    def topPages(self, domain, offset=0, limit=50, sort='page_authority',
+                 filter=None, cols=UMCols.freeCols):
+        '''Get chosen url metrics about the top pages of a domain'''
+        keyword_args = {'Cols': cols, 'Limit': limit,
+                        'Offset': offset, 'Sort': sort}
+        if filter is not None:
+            keyword_args['Filter'] = filter
+        return self.query('top-pages/%s' % urllib.quote(domain),
+                          **keyword_args)
+
     def urlMetrics(self, urls, cols=UMCols.freeCols):
         '''Get metrics about a url'''
         if isinstance(urls, basestring):
@@ -218,11 +228,13 @@ class client:
         else:
             return self.query('url-metrics', data=json.dumps(urls), Cols=cols)
 
-    def anchorText(self, url, scope='phrase_to_page',
-        sort='domains_linking_page', cols=ATCols.freeCols):
+    def anchorText(self, url, scope='phrase_to_page', offset=0, limit=25,
+                   filter='external', sort='domains_linking_page',
+                   cols=ATCols.freeCols):
         '''Get metrics about anchor text'''
         return self.query('anchor-text/%s' % urllib.quote(url),
-            Scope=scope, Sort=sort, Cols=cols)
+                          Scope=scope, Offset=offset, Limit=limit,
+                          Filter=filter, Sort=sort, Cols=cols)
 
     def links(self, url, scope='page_to_page', sort='page_authority',
         filters=['internal'],
