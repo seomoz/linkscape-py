@@ -61,7 +61,7 @@ class UMCols:
     # The number of root domains with any pages linking to the root domain of
     # the url
     rootDomainRootDomainsLinking = 8192
-    # The mozRank of the url.  Requesting this metric will provide both the 
+    # The mozRank of the url.  Requesting this metric will provide both the
     # pretty 10-point score (in umrp) and the raw score (umrr)
     mozRank                      = 16384
     # The mozRank of the subdomain of the url. Requesting this metric will
@@ -87,7 +87,7 @@ class UMCols:
     # The portion of the mozRank of all pages on the subdomain coming from
     # external links.  Requesting this metric will provide both the pretty
     # 10-point score (fejp) and the raw score (fejr)
-    subdomainExternalDomainJuice = 2097152 
+    subdomainExternalDomainJuice = 2097152
     # The portion of the mozRank of all pages on the root domain coming from
     # external links.  Requesting this metric will provide both the pretty
     # 10-point score (pejp) and the raw score (pejr)
