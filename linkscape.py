@@ -179,12 +179,11 @@ class ATCols:
 class client:
     '''An object that is tied to your id/key pair, and can make requests
     on your behalf'''
-    # The base url we request from
-    base = 'http://lsapi.seomoz.com/linkscape/%s?%s'
-
-    def __init__(self, access_id, secret_key):
+    def __init__(self, access_id, secret_key,
+                 base='http://lsapi.seomoz.com/linkscape/%s?%s'):
         self.access_id = access_id
         self.secret_key = secret_key
+        self.base = base
 
     def signature(self, expires):
         '''Generate a signature'''
@@ -198,7 +197,7 @@ class client:
         params['AccessID'] = self.access_id
         params['Expires'] = expires
         params['Signature'] = self.signature(expires)
-        request = client.base % (
+        request = self.base % (
             method.encode('utf-8'), urllib.urlencode(params))
         try:
             return json.loads(urllib2.urlopen(request, data).read())
