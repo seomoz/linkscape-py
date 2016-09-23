@@ -177,8 +177,8 @@ class ATCols:
 
 
 class client:
-    '''An object that is tied to your id/key pair, and can make requests on
-    your behalf'''
+    '''An object that is tied to your id/key pair, and can make requests
+    on your behalf'''
     # The base url we request from
     base = 'http://lsapi.seomoz.com/linkscape/%s?%s'
 
